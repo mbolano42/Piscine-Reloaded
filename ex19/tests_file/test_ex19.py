@@ -4,7 +4,11 @@ import sys
 import shutil
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
-sys.path.insert(0, ROOT)
+helpers = os.path.join(ROOT, '.test')
+if helpers not in sys.path:
+    sys.path.insert(0, helpers)
+if ROOT not in sys.path:
+    sys.path.insert(0, ROOT)
 import tests_lib as tl
 
 
