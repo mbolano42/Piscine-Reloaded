@@ -45,14 +45,16 @@ Este conjunto de ejercicios te ayudará a repasar los fundamentos de C y algunos
 
 ---
 
-## ▶️ Siguientes pasos
-
-- Abre la carpeta del ejercicio que quieras resolver y sigue el enunciado.
-- Si quieres, puedo:
-  - añadir plantillas de archivo (`.c`, `Makefile`) para empezar cada ejercicio;
-  - generar tests básicos para comprobar comportamientos;
-  - o preparar un commit con estos archivos.
-
----
-
 ¡A programar! 💪🖥️
+
+## 🧪 Ejecutar tests
+
+Usa el `Makefile` en la raíz:
+
+```bash
+# Ejecutar todos los tests
+make test
+
+# Ejecutar un test de ejercicio concreto (ej.: ex14)
+make test EX=ex14
+```
