@@ -18,32 +18,12 @@ def fail(msg):
 
 def main():
     tar_path = os.path.join(ROOT, 'ex00', 'exo.tar')
-    # If exo.tar is missing, attempt to create it from the files in ex00
+    # Do not create exo.tar here. The test should only verify that the
+    # provided exo.tar exists and contains the expected entries as documented
+    # in the README for ex00. If it's missing, fail explicitly so the student
+    # knows they must supply the tar file.
     if not os.path.exists(tar_path):
-        ex0dir = os.path.join(ROOT, 'ex00')
-        # create a minimal set of entries if they exist or synthesize them
-        try:
-            import tarfile
-            members = ['test0', 'test1', 'test2', 'test3', 'test4', 'test5']
-            with tarfile.open(tar_path, 'w') as tar:
-                # add simple regular files/directories if present, otherwise create TarInfo entries
-                for name in members:
-                    p = os.path.join(ex0dir, name)
-                    if os.path.exists(p):
-                        tar.add(p, arcname=name, recursive=True)
-                    else:
-                        ti = tarfile.TarInfo(name)
-                        ti.size = 0
-                        ti.mode = 0o644
-                        tar.addfile(ti, fileobj=None)
-                # add symlink entry test6 -> test0
-                ti = tarfile.TarInfo('test6')
-                ti.type = tarfile.SYMTYPE
-                ti.mode = 0o777
-                ti.linkname = 'test0'
-                tar.addfile(ti)
-        except Exception as e:
-            fail('exo.tar not found and cannot be created: %s' % (e,))
+        fail('exo.tar not found in ex00')
     ok, members_or_msg = tl.tar_contains_expected(tar_path, ['test0', 'test1', 'test2', 'test3', 'test4', 'test5', 'test6'])
     if not ok:
         fail('tar content error: ' + str(members_or_msg))
