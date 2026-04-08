@@ -14,7 +14,7 @@ def fail(msg):
 
 def main():
     student = os.path.join('ex14', 'ft_sqrt.c')
-    main_src = '#include <stdio.h>\nint ft_sqrt(int nb);\nint main(void){ printf("%d %d %d\n", ft_sqrt(4), ft_sqrt(5), ft_sqrt(9)); return 0; }\n'
+    main_src = '#include <stdio.h>\nint ft_sqrt(int nb);\nint main(void){ printf("%d %d %d\\n", ft_sqrt(4), ft_sqrt(5), ft_sqrt(9)); return 0; }\n'
     res = tl.compile_and_run_c_test([student], main_src, timeout=6, test_cwd=ROOT)
     if not res['ok']:
         fail(f"compile/run failed: {res.get('reason')}\ncompile: {res.get('compile')}\nrun: {res.get('run')}")

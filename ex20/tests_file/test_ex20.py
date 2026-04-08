@@ -14,7 +14,7 @@ def fail(msg):
 
 def main():
     student = os.path.join('ex20', 'ft_strdup.c')
-    main_src = '#include <stdio.h>\n#include <stdlib.h>\nchar *ft_strdup(char *src);\nint main(void){ char *p = ft_strdup("hello"); if(!p) return 1; printf("%s\n", p); free(p); return 0; }\n'
+    main_src = '#include <stdio.h>\n#include <stdlib.h>\nchar *ft_strdup(char *src);\nint main(void){ char *p = ft_strdup("hello"); if(!p) return 1; printf("%s\\n", p); free(p); return 0; }\n'
     res = tl.compile_and_run_c_test([student], main_src, timeout=6, test_cwd=ROOT)
     if not res['ok']:
         fail(f"compile/run failed: {res.get('reason')}\ncompile: {res.get('compile')}\nrun: {res.get('run')}")

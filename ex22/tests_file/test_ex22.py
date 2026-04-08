@@ -19,7 +19,7 @@ def main():
     with tempfile.TemporaryDirectory() as td:
         src = os.path.join(td, 'main.c')
         with open(src, 'w') as f:
-            f.write('#include <stdio.h>\n#include "%s"\nint main(void){ printf("%%d %%d\n", ABS(-42), ABS(7)); return 0; }\n' % header)
+            f.write('#include <stdio.h>\n#include "%s"\nint main(void){ printf("%%d %%d\\n", ABS(-42), ABS(7)); return 0; }\n' % header)
         p = subprocess.run(['gcc', '-Wall', '-Wextra', '-Werror', 'main.c', '-o', 'a.out'], cwd=td, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, timeout=8)
         if p.returncode != 0:
             fail('compile failed: ' + p.stderr)

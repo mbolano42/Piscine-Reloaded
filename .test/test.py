@@ -13,7 +13,12 @@ def run_test(ex_name, timeout=20):
         return False
     print(f"Running {ex_name} ...")
     try:
-        p = subprocess.run(['python3', test_path], cwd=REPO_ROOT, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, timeout=timeout)
+        # ensure the child Python processes can import the helpers in .test
+        env = os.environ.copy()
+        test_pkg_dir = os.path.join(REPO_ROOT, '.test')
+        existing_py = env.get('PYTHONPATH', '')
+        env['PYTHONPATH'] = test_pkg_dir + (os.pathsep + existing_py if existing_py else '')
+        p = subprocess.run(['python3', test_path], cwd=REPO_ROOT, env=env, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, timeout=timeout)
         ok = p.returncode == 0
         if ok:
             print(f"{ex_name}: PASS")

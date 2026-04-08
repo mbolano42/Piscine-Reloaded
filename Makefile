@@ -23,7 +23,6 @@ else \
 	esac; \
 fi; \
 test -x "$(PWD)/.test/test.py" || chmod +x "$(PWD)/.test/test.py"; \
-test -x "$(PWD)/test" || chmod +x "$(PWD)/test"; \
 echo "Ejecutando tests..."; \
 python3 "$(PWD)/.test/test.py" $(EX) || true; \
 echo "Limpiando directorios temporales creados por los tests..."; \

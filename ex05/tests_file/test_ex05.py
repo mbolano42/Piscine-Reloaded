@@ -14,15 +14,18 @@ def fail(msg):
 
 def main():
     exdir = os.path.join(ROOT, 'ex05')
-    found = tl.find_file_with_substr(exdir, 'MaRViN')
-    if not found:
-        fail('No file with "MaRViN" found in filename under ex05')
-    with open(found, 'rb') as f:
+    # Expected literal filename as specified in the README:
+    # "\?$*'MaRViN'*$?\"
+    expected = '"' + '\\' + '?' + '$' + '*' + "'" + 'MaRViN' + "'" + '*' + '$' + '?' + '\\' + '"'
+    expected_path = os.path.join(exdir, expected)
+    if not os.path.exists(expected_path):
+        fail(f'Expected file not found: {expected!r} under ex05')
+    with open(expected_path, 'rb') as f:
         data = f.read()
     if data == b'42':
         print('ex05: OK')
         return
-    fail(f'file {found} does not contain exactly "42"')
+    fail(f'file {expected_path} does not contain exactly "42"')
 
 
 if __name__ == '__main__':

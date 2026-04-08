@@ -14,7 +14,7 @@ def fail(msg):
 
 def main():
     student = os.path.join('ex16', 'ft_strlen.c')
-    main_src = '#include <stdio.h>\nint ft_strlen(char *str);\nint main(void){ printf("%d\n", ft_strlen("hello")); return 0; }\n'
+    main_src = '#include <stdio.h>\nint ft_strlen(char *str);\nint main(void){ printf("%d\\n", ft_strlen("hello")); return 0; }\n'
     res = tl.compile_and_run_c_test([student], main_src, timeout=6, test_cwd=ROOT)
     if not res['ok']:
         fail(f"compile/run failed: {res.get('reason')}\ncompile: {res.get('compile')}\nrun: {res.get('run')}")

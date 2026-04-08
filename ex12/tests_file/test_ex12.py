@@ -14,7 +14,7 @@ def fail(msg):
 
 def main():
     student = os.path.join('ex12', 'ft_iterative_factorial.c')
-    main_src = '#include <stdio.h>\nint ft_iterative_factorial(int nb);\nint main(void){ printf("%d\n", ft_iterative_factorial(5)); return 0; }\n'
+    main_src = '#include <stdio.h>\nint ft_iterative_factorial(int nb);\nint main(void){ printf("%d\\n", ft_iterative_factorial(5)); return 0; }\n'
     res = tl.compile_and_run_c_test([student], main_src, timeout=6, test_cwd=ROOT)
     if not res['ok']:
         fail(f"compile/run failed: {res.get('reason')}\ncompile: {res.get('compile')}\nrun: {res.get('run')}")
